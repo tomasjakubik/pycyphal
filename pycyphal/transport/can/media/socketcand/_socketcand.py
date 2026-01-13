@@ -120,7 +120,12 @@ class SocketcandMedia(Media):
         """
         return 1
 
-    def start(self, handler: Media.ReceivedFramesHandler, no_automatic_retransmission: bool) -> None:
+    def start(
+        self,
+        handler: Media.ReceivedFramesHandler,
+        error_handler: typing.Optional[Media.ErrorHandler],
+        no_automatic_retransmission: bool,
+    ) -> None:
         self._tx_thread.start()
         if self._maybe_thread is None:
             self._rx_handler = handler
